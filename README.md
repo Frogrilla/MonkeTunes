@@ -31,5 +31,5 @@ I should add that pressing option 1 on the music list will toggle playing and th
 
 <details>
 <summary> <b> Custom Maps (CURRENTLY NOT SUPPORTED): </b> </summary>
-To make your map support the music computer - add an empty GameObject to the scene with the name "CustomMap_JukeBoxLocation" - for best results use a cube with a scale of (.6f, .6f, .6f) and lower it by .325f as the model has an offset to it.
+To make your map support the music computer - add an empty GameObject to the scene with the name "CustomMap_JukeBoxLocation" - for best results use the model provided in this repo with a scale of (.5f, .5f, .5f).
 </details>
