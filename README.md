@@ -31,5 +31,5 @@ I should add that pressing option 1 on the music list will toggle playing and th
 
 <details>
 <summary> <b> Custom Maps (CURRENTLY NOT SUPPORTED): </b> </summary>
-To make your map support the music computer - add an empty GameObject to the scene with the name "CustomMap_JukeBoxLocation" - for best results use the <a href="https://github.com/Frogrilla/MonkeTunes/blob/main/MT_Computer.obj">model provided</a> in this repo with a scale of (.5f, .5f, .5f).
+To make your map support the music computer - add a GameObject to the scene with the tag "MT_CustomMapLocation" - for best results use the <a href="https://github.com/Frogrilla/MonkeTunes/blob/main/MT_Computer.obj">model provided</a> in this repo with a scale of (.5f, .5f, .5f).
 </details>
