@@ -30,9 +30,9 @@ namespace MT_CustomMaps
                 MusicPlayer.instance.transform.localPosition = Vector3.zero;
                 MusicPlayer.instance.transform.localEulerAngles = Vector3.zero;
             }
-            catch(Exception E)
+            catch
             {
-                Console.WriteLine("Error moving JukeBox to custom map - MT location likely missing in map\n" + E);
+                Console.WriteLine("Error moving JukeBox to custom map - MT location likely missing in map\n");
                 return;
             }
         }
