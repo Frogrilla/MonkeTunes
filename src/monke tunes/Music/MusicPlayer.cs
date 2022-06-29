@@ -37,12 +37,14 @@ namespace MonkeTunes.Music
             Console.WriteLine("Song paths loaded");
 
             songPlayer = gameObject.AddComponent<AudioSource>();
+            transform.Find("MT_ComputerModel/default").GetComponent<Renderer>().material.SetColor("_EmissionColor", TuneConfig.ScreenColour);
             songPlayer.spatialize = true;
             songPlayer.loop = false;
             songPlayer.time = 0;
-            songPlayer.volume = 0.5f;
+            songPlayer.volume = TuneConfig.InitialVolume;
             songPlayer.priority = 128;
             songPlayer.maxDistance = 100;
+            
 
             GameObject text = new GameObject();
             text.transform.parent = transform.Find("screen");
@@ -54,14 +56,14 @@ namespace MonkeTunes.Music
             screenText.rectTransform.sizeDelta = new Vector2(500, 300);
 
             screenText.alignment = TextAlignmentOptions.TopLeft;
-            screenText.color = Color.white;
+            screenText.color = TuneConfig.TextColour;
             screenText.fontSize = 300;
             //screenText.font = Utills.Utopium;
 
             await UpdateSong();
-            Playing = false;
+            Playing = TuneConfig.PlayOnStart;
+            mode = (PlayType)TuneConfig.InitialMode;
 
-            Redraw();
             }
         private async void Update()
         {

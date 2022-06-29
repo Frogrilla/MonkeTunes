@@ -17,11 +17,11 @@ namespace MonkeTunes
     [BepInDependency("com.ahauntedarmy.gorillatag.tmploader")]
     public class Plugin : BaseUnityPlugin
     {
-        private Dictionary<string, Vector3[]> triggerDict = new Dictionary<string, Vector3[]>()
+        public Dictionary<string, Vector3[]> ComputerLocations = new Dictionary<string, Vector3[]>()
         {
             { "JoinPublicRoom - Canyon",                    new Vector3[] { new Vector3(-118, 18.1f, -168.5f), new Vector3(0, 90, 0) } },
             { "JoinPublicRoom - Cave",                      new Vector3[] { new Vector3(-70.1f, -18.875f, -7.5f), new Vector3(0, 150, 0) } },
-            { "JoinPublicRoom - City Back",                 new Vector3[] { new Vector3(-45.5f, 16.3f, -115.25f), new Vector3(0, 30, 0) } },  
+            { "JoinPublicRoom - City Back",                 new Vector3[] { new Vector3(-45.5f, 16.3f, -115.25f), new Vector3(0, 30, 0) } },
             { "JoinPublicRoom - City Front",                new Vector3[] { new Vector3(-45.5f, 16.3f, -115.25f), new Vector3(0, 30, 0) } },
             { "JoinPublicRoom - Forest, End of Tutorial",   new Vector3[] { new Vector3(-59.85f, 14.275f, -44.6f), new Vector3(0, 15, 0) } },
             { "JoinPublicRoom - Forest, Tree Exit",         new Vector3[] { new Vector3(-59.85f, 14.275f, -44.6f), new Vector3(0, 15, 0) } },
@@ -31,6 +31,7 @@ namespace MonkeTunes
         {
             HarmonyPatches.ApplyHarmonyPatches();
             Zenjector.Install<ComputerInterface.MainInstaller>().OnProject();
+            TuneConfig.LoadSettings();
             
             StartCoroutine(Delay());
         }
@@ -45,7 +46,7 @@ namespace MonkeTunes
             {
                 try
                 {
-                    trigger.gameObject.AddComponent<Music.SpeakerTrigger>().target = triggerDict[trigger.gameObject.name];
+                    trigger.gameObject.AddComponent<Music.SpeakerTrigger>().target = ComputerLocations[trigger.gameObject.name];
                     Console.WriteLine("Added MonkeTunes.Music.SpeakerTrigger to " + trigger.gameObject.name);
                 }
                 catch
@@ -66,7 +67,7 @@ namespace MonkeTunes
             JukeBox.AddComponent<Music.MusicPlayer>();
             JukeBox.name = "MT_JukeBox";
             JukeBox.transform.localScale = Vector3.one;
-            JukeBox.transform.position = new Vector3(-63, 11.825f, -82);
+            JukeBox.transform.position = new Vector3(-63, 12.155f, -82);
             JukeBox.transform.eulerAngles = new Vector3(0, -120, 0);
 
             JukeBox.transform.Find("play").gameObject.AddComponent<Controls.PlayButton>();
