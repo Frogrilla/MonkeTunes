@@ -19,13 +19,13 @@ namespace MonkeTunes
     {
         private Dictionary<string, Vector3[]> triggerDict = new Dictionary<string, Vector3[]>()
         {
-            { "JoinPublicRoom - Canyon",                    new Vector3[] { new Vector3(-118, 17.75f, -168.5f), new Vector3(0, 90, 0) } },
-            { "JoinPublicRoom - Cave",                      new Vector3[] { new Vector3(-70.1f, -18.525f, -7.5f), new Vector3(0, 150, 0) } },
-            { "JoinPublicRoom - City Back",                 new Vector3[] { new Vector3(-45.5f, 15.95f, -115.25f), new Vector3(0, 30, 0) } },  
-            { "JoinPublicRoom - City Front",                new Vector3[] { new Vector3(-45.5f, 15.95f, -115.25f), new Vector3(0, 30, 0) } },
-            { "JoinPublicRoom - Forest, End of Tutorial",   new Vector3[] { new Vector3(-59.85f, 13.925f, -44.6f), new Vector3(0, 15, 0) } },
-            { "JoinPublicRoom - Forest, Tree Exit",         new Vector3[] { new Vector3(-59.85f, 13.925f, -44.6f), new Vector3(0, 15, 0) } },
-            { "JoinPublicRoom - Mountain For Computer",     new Vector3[] { new Vector3(26.5f, .25f, -38.75f), new Vector3(0, 290, 0) } }
+            { "JoinPublicRoom - Canyon",                    new Vector3[] { new Vector3(-118, 18.1f, -168.5f), new Vector3(0, 90, 0) } },
+            { "JoinPublicRoom - Cave",                      new Vector3[] { new Vector3(-70.1f, -18.875f, -7.5f), new Vector3(0, 150, 0) } },
+            { "JoinPublicRoom - City Back",                 new Vector3[] { new Vector3(-45.5f, 16.3f, -115.25f), new Vector3(0, 30, 0) } },  
+            { "JoinPublicRoom - City Front",                new Vector3[] { new Vector3(-45.5f, 16.3f, -115.25f), new Vector3(0, 30, 0) } },
+            { "JoinPublicRoom - Forest, End of Tutorial",   new Vector3[] { new Vector3(-59.85f, 14.275f, -44.6f), new Vector3(0, 15, 0) } },
+            { "JoinPublicRoom - Forest, Tree Exit",         new Vector3[] { new Vector3(-59.85f, 14.275f, -44.6f), new Vector3(0, 15, 0) } },
+            { "JoinPublicRoom - Mountain For Computer",     new Vector3[] { new Vector3(26.5f, .6f, -38.75f), new Vector3(0, 290, 0) } }
         };
         void Start()
         {
@@ -56,7 +56,7 @@ namespace MonkeTunes
 
             var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MonkeTunes.Resources.mt_assets");
             var Bundle = AssetBundle.LoadFromStream(stream);
-            GameObject computer = Bundle.LoadAsset<GameObject>("MusicComputer");
+            GameObject computer = Bundle.LoadAsset<GameObject>("MT_Computer");
             //Utills.Utopium = Bundle.LoadAsset<TMP_FontAsset>("Utopium SDF");
             object[] allAssets = Bundle.LoadAllAssets();
             Bundle.Unload(false);
@@ -65,7 +65,7 @@ namespace MonkeTunes
 
             JukeBox.AddComponent<Music.MusicPlayer>();
             JukeBox.name = "MT_JukeBox";
-            JukeBox.transform.localScale = Vector3.one * .5f;
+            JukeBox.transform.localScale = Vector3.one;
             JukeBox.transform.position = new Vector3(-63, 11.825f, -82);
             JukeBox.transform.eulerAngles = new Vector3(0, -120, 0);
 
