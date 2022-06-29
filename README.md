@@ -31,7 +31,7 @@ I should add that pressing option 1 on the music list will toggle playing and th
 
 <details>
 <summary> <b> Custom Maps: </b> </summary>
-To make your map support the music computer - add a GameObject to the scene with the name "MT_CustomMapLocation" - for best results use the <a href="https://github.com/Frogrilla/MonkeTunes/blob/main/MT_Computer.obj">model provided</a> in this repo with a scale of (.5f, .5f, .5f). You should also know that the computer is parented to the location in your map so if you want it to be animated go for it.
+To make your map support the music computer - add a GameObject to the scene with the name "MT_CustomMapLocation" - for best results use the <a href="https://github.com/Frogrilla/MonkeTunes/blob/main/MT_Computer.obj">model provided</a> in this repo. You should also know that the computer is parented to the location in your map so if you want it to be animated go for it.
 
 ![MonkeTunes_CustomMaps](https://user-images.githubusercontent.com/40333513/176285676-3dbc63da-7142-47f4-b04a-9192b8fde36b.gif)
 
