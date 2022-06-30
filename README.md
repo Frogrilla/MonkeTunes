@@ -10,7 +10,7 @@ I should add that pressing option 1 on the music list will toggle playing and th
 </details>
 
 <details>
-<summary> <b> Locations: </b> </summary>
+<summary> <b> Locations: </b> </summary> </br>
 
 **Forest:** </br>
 ![Location_Forest](https://user-images.githubusercontent.com/40333513/175998997-31ed5de9-ff62-47ef-8079-fd9e1275020f.jpg)
@@ -26,6 +26,21 @@ I should add that pressing option 1 on the music list will toggle playing and th
 
 **Mountain:** </br>
 ![Location_Mountain](https://user-images.githubusercontent.com/40333513/175999287-7ecdffcc-8e2b-4c5d-9eb2-71e96c4ef62c.jpg)
+
+</details>
+
+<details>
+<summary> <b> Config: </b> </summary>
+Settings for the mod can be found in BepInEx/config/MonkeTunes.cfg which will be generated the first time you play with the mod installed. At some point this may become a json file if I add certain settings as they may be easier to handle in json rather than in a BepInEx config. </br> </br>
+
+**Music Settings** </br>
+Initial Volume = What the volume of the music will start off as. </br>
+Initial Mode = What mode the computer will start with. </br>
+Play On Start = Wether or not the music starts playing when it is loaded or not. </br>
+
+**Computer Settings** </br>
+Screen Colour = Colour of the screen on the computer. </br>
+Text Colour = Colour of the text on the screen.
 
 </details>
 
