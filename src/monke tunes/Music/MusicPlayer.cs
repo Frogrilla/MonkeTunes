@@ -18,22 +18,28 @@ namespace MonkeTunes.Music
         Looping = 1,
         Random = 2
     }
+    public struct Playlist
+    {
+        public string name;
+        public List<string> songs;
+    }
     public class MusicPlayer : MonoBehaviour
     {
         public static MusicPlayer instance;
 
-        internal List<string> songList = new List<string>();
-        internal List<int> songQueue = new List<int>();
+        internal List<Playlist> playlists = new List<Playlist>();
         internal AudioSource songPlayer;
-
         internal TextMeshPro screenText;
+
+        private bool Downloaded = false;
         private async void Start()
         {
             instance = this;
 
             Console.WriteLine("Fetching songs");
-            songList = MusicLoader.LoadMusic();
-            songList.Sort();
+            //songList = MusicLoader.LoadMusic();
+            //songList.Sort();
+            playlists = MusicLoader.LoadPlaylists();
             Console.WriteLine("Song paths loaded");
 
             songPlayer = gameObject.AddComponent<AudioSource>();
@@ -63,23 +69,26 @@ namespace MonkeTunes.Music
             await UpdateSong();
             Playing = TuneConfig.PlayOnStart;
             mode = (PlayType)TuneConfig.InitialMode;
+            Redraw();
 
             }
         private async void Update()
         {
             if (songPlayer.clip == null) return;
-            if (songPlayer.clip.length - songPlayer.time < 0.1f) await End();
+            if (!Downloaded && Playing) { await UpdateSong(); return; }
+            if (songPlayer.clip.length - songPlayer.time < 0.1f && Playing) await End();
         }
         internal void Redraw()
         {
-            screenText.text = (songPlayer.clip.name + ":\n" + (Playing ? "-Playing\n-" : "-Paused\n-") + Volume + " volume\n-" + Mode + " mode");
+            screenText.text = (CurrentSong() + ":\n" + "-" + playlists[PlaylistIndex].name + " playlist\n" + (Playing ? "-Playing\n-" : "-Paused\n-") + Volume + " volume\n-" + Mode + " mode");
         }
         private async Task UpdateSong()
         {
             songPlayer.time = 0;
-            songPlayer.clip = await MusicLoader.RequestMusic(songList[index]);
-            Playing = true;
-            Console.WriteLine("Song set to " + songPlayer.clip.name);
+            songPlayer.clip = await MusicLoader.RequestMusic(playlists[PlaylistIndex].songs[Index]);
+            Downloaded = true;
+            Playing = Playing;
+            Console.WriteLine("Song set to " + songPlayer.clip.name + " from playlist " + playlists[PlaylistIndex].name);
         }
         public async Task End()
         {
@@ -96,13 +105,15 @@ namespace MonkeTunes.Music
                     break;
                 case PlayType.Random:
                     // Pick a random index from 0 - SongList length
-                    int next = UnityEngine.Random.Range(0, songList.Count - 1);
+                    int next = UnityEngine.Random.Range(0, playlists[PlaylistIndex].songs.Count - 1);
                     Index = next;
                     break;
             }
 
             Redraw();
         }
+
+        public string CurrentSong() => Path.GetFileNameWithoutExtension(playlists[PlaylistIndex].songs[index]);
 
         private int index = 0;
         public int Index
@@ -112,13 +123,32 @@ namespace MonkeTunes.Music
             {
                 try
                 {
-                    index = Utills.mod(value, songList.Count);
-                    UpdateSong();
+                    index = (int)Mathf.Repeat(value, playlists[PlaylistIndex].songs.Count);
+                    Downloaded = false;
+                    Redraw();
+                    //UpdateSong();
                 }
                 catch
                 {
-                    index = 0;
-                    Console.WriteLine("Some issue with setting index - defualting to 0");
+                    Console.WriteLine("Setting index failed");
+                }
+            }
+        }
+
+        private int playlist = 0;
+        public int PlaylistIndex
+        {
+            get => playlist;
+            set 
+            {
+                try
+                {
+                    playlist = (int)Mathf.Repeat(value, playlists.Count);
+                    Console.WriteLine("Current playlist set to " + playlists[playlist].name);
+                }
+                catch
+                {
+                    Console.WriteLine("Setting playlist failed");   
                 }
             }
         }
@@ -130,16 +160,18 @@ namespace MonkeTunes.Music
             set
             {
                 if (value < 0) value += 3;
-                value = (PlayType)Utills.mod((int)value, 3);
+                value = (PlayType)Mathf.Repeat((int)value, 3);
                 mode = value;
 
                 Console.WriteLine("Play type set to " + mode);
                 Redraw();
             }
         }
+
+        private bool playBuffer = false;
         public bool Playing
         {
-            get => songPlayer.isPlaying;
+            get => songPlayer.isPlaying || playBuffer;
             set
             {
                 if (value)
@@ -160,6 +192,7 @@ namespace MonkeTunes.Music
                     transform.Find("play/icon_play").gameObject.SetActive(true);
                     transform.Find("play/icon_pause").gameObject.SetActive(false);
                 }
+                playBuffer = value;
                 Redraw();
             }
         }

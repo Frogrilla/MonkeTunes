@@ -5,12 +5,16 @@ using MonkeTunes.Music;
 
 namespace MonkeTunes.Controls
 {
-    internal class BackButton : MtButton
+    internal class PlaylistButton : MtButton
     {
+#if !PLUGIN
+        public int listOffset = 1;
+#endif
         internal override void ButtonPress()
         {
             base.ButtonPress();
-            MusicPlayer.instance.Index--;
+            MusicPlayer.instance.PlaylistIndex += listOffset;
+            MusicPlayer.instance.Index = 0;
         }
     }
 }

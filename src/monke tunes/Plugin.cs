@@ -70,9 +70,12 @@ namespace MonkeTunes
             JukeBox.transform.position = new Vector3(-63, 12.155f, -82);
             JukeBox.transform.eulerAngles = new Vector3(0, -120, 0);
 
+            JukeBox.transform.Find("MT_ComputerModel/default").GetComponent<Renderer>().material.color = TuneConfig.ComputerColour;
             JukeBox.transform.Find("play").gameObject.AddComponent<Controls.PlayButton>();
             JukeBox.transform.Find("skip").gameObject.AddComponent<Controls.SkipButton>();
             JukeBox.transform.Find("back").gameObject.AddComponent<Controls.BackButton>();
+            JukeBox.transform.Find("playlist+").gameObject.AddComponent<Controls.PlaylistButton>().listOffset = 1;
+            JukeBox.transform.Find("playlist-").gameObject.AddComponent<Controls.PlaylistButton>().listOffset = -1;
             JukeBox.transform.Find("vol+").gameObject.AddComponent<Controls.VolumeButton>().volumeOffset = .1f;
             JukeBox.transform.Find("vol-").gameObject.AddComponent<Controls.VolumeButton>().volumeOffset = -.1f;
             JukeBox.transform.Find("mode+").gameObject.AddComponent<Controls.ModeButton>().modeOffset = 1;

@@ -21,7 +21,7 @@ namespace MonkeTunes.ComputerInterface
             "Volume",
             "Mode",
             "Skip",
-            "Back"
+            "Back",
         };
         public override void OnShow(object[] args)
         {
@@ -74,10 +74,12 @@ namespace MonkeTunes.ComputerInterface
                     }
                     break;
                 case EKeyboardKey.Down:
-                    Select(Selected + 1);
+                    Selected = (int)Mathf.Repeat(Selected + 1, Lines.Length);
+                    DrawScreen();
                     break;
                 case EKeyboardKey.Up:
-                    Select(Selected - 1);
+                    Selected = (int)Mathf.Repeat(Selected - 1, Lines.Length);
+                    DrawScreen();
                     break;
                 case EKeyboardKey.Right:
                     switch (Selected)
@@ -104,12 +106,6 @@ namespace MonkeTunes.ComputerInterface
                     DrawScreen();
                     break;
             }
-        }
-
-        public void Select(int i)
-        {
-            Selected = Mathf.Clamp(i, 0, Lines.Length);
-            DrawScreen();
         }
     }
 }

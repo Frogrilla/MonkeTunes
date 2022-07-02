@@ -19,6 +19,26 @@ namespace MonkeTunes.Music
             return Directory.GetFiles(MusicFolder, "*.ogg", SearchOption.AllDirectories).ToList();
         }
 
+        internal static List<Playlist> LoadPlaylists()
+        {
+            MusicFolder = Path.Combine(Path.GetDirectoryName(typeof(MusicPlayer).Assembly.Location), "Music");
+            List<Playlist> playlists = new List<Playlist>();
+
+            foreach (string directory in Directory.GetDirectories(MusicFolder))
+            {
+                Playlist playlist = new Playlist();
+                playlist.name = Path.GetFileNameWithoutExtension(directory);
+                playlist.songs = Directory.GetFiles(directory, "*.ogg", SearchOption.AllDirectories).ToList();
+                playlist.songs.Sort();
+                playlists.Add(playlist);
+
+                Console.WriteLine(playlist.name + ":\n" + playlist.songs);
+            }
+
+            playlists.OrderBy(l => l.name);
+            return playlists;
+        }
+
         internal static async Task<AudioClip> RequestMusic(string path)
         {
             string name = Path.GetFileNameWithoutExtension(path);

@@ -19,7 +19,6 @@ namespace MonkeTunes
 
             return hex;
         }
-
         internal static string ColourString(string str, Color colour)
         {
             return "<color=#" + ColourToHex(colour) + ">" + str + "</color>";
@@ -28,10 +27,6 @@ namespace MonkeTunes
         internal static string ColourString(string str, string hex)
         {
             return "<color=" + hex + ">" + str + "</color>";
-        }
-        internal static int mod(int a, int b)
-        {
-            return a - b * Mathf.FloorToInt(a / b);
         }
     }
 }
