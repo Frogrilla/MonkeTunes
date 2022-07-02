@@ -20,7 +20,7 @@ namespace MonkeTunes
         public Dictionary<string, Vector3[]> ComputerLocations = new Dictionary<string, Vector3[]>()
         {
             { "JoinPublicRoom - Canyon",                    new Vector3[] { new Vector3(-118, 18.1f, -168.5f), new Vector3(0, 90, 0) } },
-            { "JoinPublicRoom - Cave",                      new Vector3[] { new Vector3(-70.1f, -18.875f, -7.5f), new Vector3(0, 150, 0) } },
+            { "JoinPublicRoom - Cave",                      new Vector3[] { new Vector3(-70.1f, -18.2f, -7.5f), new Vector3(0, 150, 0) } },
             { "JoinPublicRoom - City Back",                 new Vector3[] { new Vector3(-45.5f, 16.3f, -115.25f), new Vector3(0, 30, 0) } },
             { "JoinPublicRoom - City Front",                new Vector3[] { new Vector3(-45.5f, 16.3f, -115.25f), new Vector3(0, 30, 0) } },
             { "JoinPublicRoom - Forest, End of Tutorial",   new Vector3[] { new Vector3(-59.85f, 14.275f, -44.6f), new Vector3(0, 15, 0) } },
