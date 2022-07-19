@@ -43,13 +43,13 @@ namespace MonkeTunes.Music
         {
             string name = Path.GetFileNameWithoutExtension(path);
 
-            using (UnityWebRequest req = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.UNKNOWN))
+            using (UnityWebRequest req = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.OGGVORBIS))
             {
                 req.SendWebRequest();
-
+                while (!req.isDone) Task.Delay(10).Wait();
                 try
                 {
-                    while (!req.isDone) await Task.Delay(5);
+                    //while (!req.isDone) await Task.Delay(5);
                     if (req.isNetworkError || req.isHttpError)
                     {
                         Console.WriteLine("Fetching track had error: " + req.error);

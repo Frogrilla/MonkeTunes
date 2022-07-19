@@ -8,7 +8,6 @@ using Zenject;
 using Bepinject;
 using UnityEngine;
 using System.Linq;
-using Utilla;
 using TMPro;
 
 namespace MonkeTunes
@@ -30,7 +29,7 @@ namespace MonkeTunes
         void Start()
         {
             HarmonyPatches.ApplyHarmonyPatches();
-            Zenjector.Install<ComputerInterface.MainInstaller>().OnProject();
+            //Zenjector.Install<ComputerInterface.MainInstaller>().OnProject();
             TuneConfig.LoadSettings();
             
             StartCoroutine(Delay());
