@@ -2,6 +2,8 @@
 A custom music loader for Gorilla Tag that uses unity web requests to grab music from a folder. </br>
 (The mod does not come with any music and does not distribute any copyrighted material)
 
+**REQUIRES TMP LOADER https://github.com/AHauntedArmy/TMPLoader**
+
 <details>
 <summary> <b> Use: </b> </summary>
 To use this mod, add folders with the names of the playlists you want to make into the music folder - then place the songs you want into those playlists (must be .ogg files). Then go in game and use Computer Interface or the custom Monke Tunes Computer to control if it's playing.
