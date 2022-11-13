@@ -58,3 +58,6 @@ To make your map support the music computer - add a GameObject to the scene with
 ![MonkeTunes_CustomMaps](https://user-images.githubusercontent.com/40333513/176285676-3dbc63da-7142-47f4-b04a-9192b8fde36b.gif)
 
 </details>
+
+# Disclamer
+This product is not affiliated with Gorilla Tag or Another Axiom LLC and is not endorsed or otherwise sponsored by Another Axiom LLC. Portions of the materials contained herein are property of Another Axiom LLC. ©2021 Another Axiom LLC.
