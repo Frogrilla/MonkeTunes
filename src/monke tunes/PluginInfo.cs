@@ -7,6 +7,6 @@
     {
         public const string GUID = "com.frogrilla.gorillatag.monketunes";
         public const string Name = "MonkeTunes";
-        public const string Version = "1.1.1";
+        public const string Version = "1.1.2";
     }
 }

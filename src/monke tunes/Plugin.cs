@@ -38,7 +38,7 @@ namespace MonkeTunes
         {
             yield return new WaitForSeconds(5);
 
-            Transform[] mapTriggers = GameObject.Find("/NetworkTriggers/Networking Trigger").GetComponentsInChildren<Transform>(false);
+            Transform[] mapTriggers = GameObject.Find("NetworkTriggers/Networking Trigger").GetComponentsInChildren<Transform>(false);
             mapTriggers = mapTriggers.OrderBy(o => o.name).ToArray();
 
             foreach(Transform trigger in mapTriggers)
